@@ -18,7 +18,7 @@ const App = () => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      {/* {<Navbar />} */}
+      <Navbar />
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Routes>
