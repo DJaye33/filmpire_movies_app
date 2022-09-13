@@ -17,6 +17,7 @@ import {
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 
+import { Sidebar } from "../";
 import useStyles from "./styles";
 
 const Navbar = () => {
@@ -79,11 +80,19 @@ const Navbar = () => {
               variant="temporary"
               anchor="right"
               open={mobileOpen}
-              className={classes.drawerBackground}
               classes={{ paper: classes.drawerPaper }}
-            ></Drawer>
+              ModalProps={{ keepMounted: true }}
+            >
+              <Sidebar setMobileOpen={setMobileOpen} />
+            </Drawer>
           ) : (
-            <Drawer></Drawer>
+            <Drawer
+              classes={{ paper: classes.drawerPaper }}
+              variant="permanent"
+              open
+            >
+              <Sidebar setMobileOpen={setMobileOpen} />
+            </Drawer>
           )}
         </nav>
       </div>
