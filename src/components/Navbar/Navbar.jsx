@@ -15,12 +15,15 @@ import {
   Brightness7,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { useTheme } from "@mui/material/styles";
 
 import useStyles from "./styles";
 
 const Navbar = () => {
   const classes = useStyles();
   const isMobile = useMediaQuery("(max-width:600px)");
+  const theme = useTheme();
+  const isAuthenticated = true;
 
   return (
     <>
@@ -37,6 +40,35 @@ const Navbar = () => {
               <Menu />
             </IconButton>
           )}
+          <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => {}}>
+            {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
+          </IconButton>
+          {!isMobile && "Search... "}
+          <div>
+            {!isAuthenticated ? (
+              <Button color="inherit" onClick={() => {}}>
+                Login $nbsp; <AccountCircle />
+              </Button>
+            ) : (
+              <Button
+                color="inherit"
+                component={Link}
+                to={`/profile/:id`}
+                className={classes.linkButton}
+                onClick={() => {}}
+              >
+                {!isMobile && <>My Movies &nbsp;</>}
+                <Avatar
+                  style={{ width: 30, height: 30 }}
+                  alt="Profile"
+                  src={
+                    "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2016%2F08%2F08%2F09%2F17%2Favatar-1577909_960_720.png&f=1&nofb=1"
+                  }
+                />
+              </Button>
+            )}
+          </div>
+          {isMobile && "Search... "}
         </Toolbar>
       </AppBar>
     </>
