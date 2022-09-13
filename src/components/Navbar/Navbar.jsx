@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   IconButton,
@@ -20,6 +20,7 @@ import { useTheme } from "@mui/material/styles";
 import useStyles from "./styles";
 
 const Navbar = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();
   const isMobile = useMediaQuery("(max-width:600px)");
   const theme = useTheme();
@@ -71,6 +72,21 @@ const Navbar = () => {
           {isMobile && "Search... "}
         </Toolbar>
       </AppBar>
+      <div>
+        <nav className={classes.drawer}>
+          {isMobile ? (
+            <Drawer
+              variant="temporary"
+              anchor="right"
+              open={mobileOpen}
+              className={classes.drawerBackground}
+              classes={{ paper: classes.drawerPaper }}
+            ></Drawer>
+          ) : (
+            <Drawer></Drawer>
+          )}
+        </nav>
+      </div>
     </>
   );
 };
